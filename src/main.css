@@ -1,0 +1,9 @@
+canvas {
+    display: none !important;
+}
+
+@import "~cropperjs/dist/cropper.css";
+.cropper-area img {
+    display: block;
+    max-width: 100%;
+}

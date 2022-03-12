@@ -1,0 +1,8 @@
+{
+  "name": "for_four_pict",
+  "version": "1.0.0",
+  "description": "to divide a picture to four one",
+  "main": "index.js",
+  "author": "s1kl",
+ "license": "MIT"
+}
