@@ -2,7 +2,7 @@ import "./main.css";
 import Cropper from 'cropperjs';
 
 const cropperImg = document.getElementById('cropper-img');
-const cropper = new Cropper(cropperImg, { aspectRatio: 16/9 });
+const cropper = new Cropper(cropperImg, { aspectRatio: 16/9, viewMode: 1, autoCropArea:1, zoomOnWheel:false });
 const canvas1 = document.getElementById("canvas1");
 const ctx1 = canvas1.getContext("2d");
 const canvas2 = document.getElementById("canvas2");
@@ -20,14 +20,29 @@ const cropBtn3 = document.getElementById('crop-btn3');
 const cropBtn2 = document.getElementById('crop-btn2');
 const result = document.getElementById('result-img');
 const cropInput = document.getElementById('crop-input');
+const dlBtn = document.getElementById('button');
 
+let extension;
 function cropDisplayImage(event) {
   const file = event.target.files[0]
   if (!file) return
   const reader = new FileReader()
   reader.onload = (event) => {
     cropper.replace(event.target.result)
-  }
+    // let result = reader.result;
+    // if (result.indexOf('image/jpeg')) {
+    //   extension = 'jpeg'
+    // } else if (result.indexOf('image/png')) {
+    //   extension = 'png'
+    // }
+    extension = reader.result.slice(reader.result.indexOf('/') + 1, reader.result.indexOf(';'));
+    if (extension == 'svg+xml') {
+      extension = 'svg';
+    } else if (extension == 'x-icon'){
+      extension = 'ico';
+    }
+    console.log(extension);
+}
   reader.readAsDataURL(file)
 }
 
@@ -45,10 +60,12 @@ const cropped_pict = new Image();
 function cropped_canvasImage() {
   if (n == 4) {
     combine4();
-  } else if (n ==3) {
+  } else if (n == 3) {
     combine3();
-  } else {
+  } else if (n == 2){
     combine2();
+  } else {
+    return;
   }
 }
 
@@ -114,7 +131,7 @@ function combine2() {
   image4.src = canvas4.toDataURL();
 }
 
-let n;
+let n = 0;
 function select4() {
   n = 4;
   outCropped();
@@ -128,7 +145,49 @@ function select2() {
   outCropped();
 }
 
+function download(evt) {
+  evt.preventDefault();
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+  if (n == 4) {
+    a.download = 'image1.jpg';
+    a.href = canvas1.toDataURL();
+    a.click();
+    a.download = 'image2';
+    a.href = canvas2.toDataURL();
+    a.click();
+    a.download = 'image3';
+    a.href = canvas3.toDataURL();
+    a.click();
+    a.download = 'image4';
+    a.href = canvas4.toDataURL();
+    a.click();
+  } else if (n == 3) {
+    a.download = 'image1.jpg';
+    a.href = canvas1.toDataURL();
+    a.click();
+    a.download = 'image2';
+    a.href = canvas2.toDataURL();
+    a.click();
+    a.download = 'image3';
+    a.href = canvas3.toDataURL();
+    a.click();
+  } else if (n == 2) {
+    a.download = 'image1.jpg';
+    a.href = canvas1.toDataURL();
+    a.click();
+    a.download = 'image2';
+    a.href = canvas2.toDataURL();
+    a.click();
+  } else {
+    return;
+  }
+  a.remove();
+}
+
+
 cropInput.addEventListener('change', cropDisplayImage);
 cropBtn4.addEventListener('click', select4);
 cropBtn3.addEventListener('click', select3);
 cropBtn2.addEventListener('click', select2);
+dlBtn.addEventListener('click', download);
