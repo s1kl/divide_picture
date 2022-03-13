@@ -1,4 +1,4 @@
-import "./main.css";
+import "./main.scss";
 import Cropper from 'cropperjs';
 
 const cropperImg = document.getElementById('cropper-img');
@@ -23,6 +23,7 @@ const cropInput = document.getElementById('crop-input');
 const dlBtn = document.getElementById('button');
 
 let extension = 'image/png';
+let file_name = 'image'
 function cropDisplayImage(event) {
   const file = event.target.files[0]
   if (!file) return
@@ -30,8 +31,10 @@ function cropDisplayImage(event) {
   reader.onload = (event) => {
     cropper.replace(event.target.result)
     extension = reader.result.slice(reader.result.indexOf(':') + 1, reader.result.indexOf(';'));
-    console.log(extension);
-}
+  }
+  file_name = cropInput.value.slice(cropInput.value.lastIndexOf('\\') + 1, cropInput.value.lastIndexOf('.')) + '_';
+  console.log(cropInput.value);
+  console.log(file_name);
   reader.readAsDataURL(file)
 }
 
@@ -96,7 +99,7 @@ function combine3() {
   image1.src = canvas1.toDataURL(extension);
   image2.src = canvas2.toDataURL(extension);
   image3.src = canvas3.toDataURL(extension);
-  image4.src = canvas4.toDataURL(extension);
+  image4.src = canvas4.toDataURL();
 }
 
 function combine2() {
@@ -112,8 +115,8 @@ function combine2() {
   ctx4.clearRect(0, 0, canvas4.width, canvas4.height);
   image1.src = canvas1.toDataURL(extension);
   image2.src = canvas2.toDataURL(extension);
-  image3.src = canvas3.toDataURL(extension);
-  image4.src = canvas4.toDataURL(extension);
+  image3.src = canvas3.toDataURL();
+  image4.src = canvas4.toDataURL();
 }
 
 let n = 0;
@@ -135,33 +138,33 @@ function download(evt) {
   const a = document.createElement("a");
   document.body.appendChild(a);
   if (n == 4) {
-    a.download = 'image1.jpg';
+    a.download = file_name + 1;
     a.href = canvas1.toDataURL(extension);
     a.click();
-    a.download = 'image2';
+    a.download = file_name + 2;
     a.href = canvas2.toDataURL(extension);
     a.click();
-    a.download = 'image3';
+    a.download = file_name + 3;
     a.href = canvas3.toDataURL(extension);
     a.click();
-    a.download = 'image4';
+    a.download = file_name + 4;
     a.href = canvas4.toDataURL(extension);
     a.click();
   } else if (n == 3) {
-    a.download = 'image1.jpg';
+    a.download = file_name + 1;
     a.href = canvas1.toDataURL(extension);
     a.click();
-    a.download = 'image2';
+    a.download = file_name + 2;
     a.href = canvas2.toDataURL(extension);
     a.click();
-    a.download = 'image3';
+    a.download = file_name + 3;
     a.href = canvas3.toDataURL(extension);
     a.click();
   } else if (n == 2) {
-    a.download = 'image1.jpg';
+    a.download = file_name + 1;
     a.href = canvas1.toDataURL(extension);
     a.click();
-    a.download = 'image2';
+    a.download = file_name + 2;
     a.href = canvas2.toDataURL(extension);
     a.click();
   } else {

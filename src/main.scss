@@ -1,0 +1,30 @@
+@import "~cropperjs/dist/cropper.css";
+
+
+.cropper-area img {
+    display: block;
+    max-width: 100%;
+}
+
+.cropper-area, .rendering {
+    width: 48vw;
+}
+
+canvas, .result {
+    display: none !important;
+}
+
+.rendering {
+
+}
+
+.visible {
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.image {
+    width: 22vw;
+}
