@@ -6,7 +6,12 @@
 }
 
 .cropper-area, .rendering {
-    width: 40vw;
+    @media (orientation: landscape) {
+            width: 40vw;
+    }
+    @media (orientation: portrait) {
+            width: 80vw;
+    }
 }
 
 canvas, .result {
@@ -18,10 +23,15 @@ canvas, .result {
     display: flex;
     justify-content: space-around;
     align-items: stretch;
+    @media (orientation: landscape) {
+        flex-wrap: nowrap;
+    }
+    @media (orientation: portrait) {
+        flex-wrap: wrap;
+    }
 }
 
 .rendering {
-    background-color: aqua;
     height: 40vw * 9 / 16;
 }
 

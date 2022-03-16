@@ -27,6 +27,7 @@ const dlBtn = document.getElementById('button');
 let extension = 'image/png';
 let file_name = 'image'
 function cropDisplayImage(event) {
+  n = 1;
   const file = event.target.files[0]
   if (!file) return
   const reader = new FileReader()
@@ -109,7 +110,11 @@ function combine3() {
   image1.style.top = '2%';
   image2.style.top = '1.2%';
   image3.style.left = '49.8%';
-  image3.style.bottom = '47%';
+  if (window.innerHeight > window.innerWidth) {
+    image3.style.bottom = '97%';
+  } else {
+    image3.style.bottom = '47%';
+  }
 }
 
 function combine2() {
@@ -135,14 +140,17 @@ function combine2() {
 
 let n = 0;
 function select4() {
+  if (n == 0) {return;}
   n = 4;
   outCropped();
 }
 function select3() {
+  if (n == 0) {return;}
   n = 3;
   outCropped();
 }
 function select2() {
+  if (n == 0) {return;}
   n = 2;
   outCropped();
 }
