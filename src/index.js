@@ -15,6 +15,8 @@ const image1 = document.getElementById("image1");
 const image2 = document.getElementById("image2");
 const image3 = document.getElementById("image3");
 const image4 = document.getElementById("image4");
+let image = document.getElementsByClassName('image');
+image = Array.from(image);
 const cropBtn4 = document.getElementById('crop-btn4');
 const cropBtn3 = document.getElementById('crop-btn3');
 const cropBtn2 = document.getElementById('crop-btn2');
@@ -80,6 +82,10 @@ function combine4() {
   image2.src = canvas2.toDataURL(extension);
   image3.src = canvas3.toDataURL(extension);
   image4.src = canvas4.toDataURL(extension);
+  image1.style.top = '1%';
+  image2.style.top = '1%';
+  image3.style.left = '1%';
+  image3.style.bottom = '-1%';
 }
 
 function combine3() {
@@ -100,6 +106,10 @@ function combine3() {
   image2.src = canvas2.toDataURL(extension);
   image3.src = canvas3.toDataURL(extension);
   image4.src = canvas4.toDataURL();
+  image1.style.top = '2%';
+  image2.style.top = '1.2%';
+  image3.style.left = '49.8%';
+  image3.style.bottom = '47%';
 }
 
 function combine2() {
@@ -117,6 +127,10 @@ function combine2() {
   image2.src = canvas2.toDataURL(extension);
   image3.src = canvas3.toDataURL();
   image4.src = canvas4.toDataURL();
+  image1.style.top = '2%';
+  image2.style.top = '2%';
+  image3.style.left = '1%';
+  image3.style.bottom = '-1%';
 }
 
 let n = 0;

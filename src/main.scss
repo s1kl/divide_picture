@@ -1,30 +1,55 @@
 @import "~cropperjs/dist/cropper.css";
 
-
 .cropper-area img {
     display: block;
     max-width: 100%;
 }
 
 .cropper-area, .rendering {
-    width: 48vw;
+    width: 40vw;
 }
 
 canvas, .result {
     display: none !important;
 }
 
-.rendering {
-
-}
-
 .visible {
-    width: 100vw;
+    width: 90vw;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: stretch;
+}
+
+.rendering {
+    background-color: aqua;
+    height: 40vw * 9 / 16;
 }
 
 .image {
-    width: 22vw;
+    width: 48%;
+}
+
+#image1 {
+    position: relative;
+    top: 1%;
+    left: 1%;
+}
+
+#image2 {
+    position: relative;
+    top: 1%;
+    right: -1%;
+    vertical-align: top;
+}
+
+#image3 {
+    position: relative;
+    bottom: -1%;
+    left: 1%;
+}
+
+#image4 {
+    position: relative;
+    bottom: -1%;
+    right: -1%;
 }
