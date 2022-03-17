@@ -3,16 +3,21 @@
 <head>
   <meta charset="utf-8">
   <link rel="shortcut icon" href="#" />
-  <title>一写四用</title>
+  <title>Four Pictures, For Twitter</title>
 </head>
 <body>
-  ①<input id="crop-input" type="file" accept="image/*"><br>
-  ②<button id="crop-btn4">divide 4</button>
-  <button id="crop-btn3">divide 3</button>
-  <button id="crop-btn2">divide 2</button><br>
-
-
-  ③<button id="button">Download</button>
+  <div class="input">
+    <label>
+      <input id="crop-input" type="file" accept="image/*">
+      画像選択
+    </label>
+    <div class="crop">
+      <button id="crop-btn4">4分割</button>
+      <button id="crop-btn3">3分割</button>
+      <button id="crop-btn2">2分割</button>
+    </div>
+    <button id="button">分割して保存</button>
+  </div>
 
 
   <br>
